@@ -6,7 +6,7 @@ import { SubMenu } from "./SubMenu";
 
 export function Menu() {
   return (
-    <nav className="h-screen w-60 bg-zinc-900">
+    <nav className="h-screen w-72 bg-zinc-900">
       <div className="h-full p-5">
         {/* header */}
         <div className="flex items-center justify-center w-full">
