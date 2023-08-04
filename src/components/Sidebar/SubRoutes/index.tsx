@@ -14,12 +14,15 @@ interface Props {
   children: ReactNode;
 }
 
-export function SubMenu({ menuName, menuIcon: Icon, children }: Props) {
+export function SubRoutes({ menuName, menuIcon: Icon, children }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Collapsible open={open} onClick={() => setOpen((old) => !old)}>
-      <CollapsibleTrigger className="w-full">
+    <Collapsible open={open}>
+      <CollapsibleTrigger
+        className="w-full"
+        onClick={() => setOpen((old) => !old)}
+      >
         <div className="w-full flex items-center justify-between">
           <div className="flex items-center">
             <Icon />

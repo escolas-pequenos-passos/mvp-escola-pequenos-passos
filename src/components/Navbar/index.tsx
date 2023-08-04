@@ -32,7 +32,7 @@ function Notification({
   );
 }
 
-export function TopMenu() {
+export function Navbar() {
   return (
     <div className="w-full px-5 py-4 border-b-[1px] border-b-dark-blue/20">
       <div className="flex justify-between items-center">

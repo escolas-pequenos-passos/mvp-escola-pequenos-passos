@@ -1,5 +1,6 @@
 import { AiFillSignal, AiOutlineUser } from "react-icons/ai";
 import { IoSchoolSharp } from "react-icons/io5";
+import { BiExport } from "react-icons/bi";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -11,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   return (
@@ -73,9 +75,15 @@ export default function Dashboard() {
       <div className="mt-4">
         <Card>
           <CardHeader>
-            <div className="flex items-center gap-3">
-              <span className="text-zinc-800 text-lg">Professores</span>
-              <IoSchoolSharp />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-zinc-800 text-lg">Professores</span>
+                <IoSchoolSharp />
+              </div>
+              <Button className="bg-green-500">
+                <span className="text-xs font-bold">Exportar</span>{" "}
+                <BiExport className="ml-2" size={16} />
+              </Button>
             </div>
           </CardHeader>
           <CardContent>

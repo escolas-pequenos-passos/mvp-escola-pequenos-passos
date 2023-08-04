@@ -1,5 +1,5 @@
-import { Menu } from "@/components/Menu";
-import { TopMenu } from "@/components/TopMenu";
+import { Sidebar } from "@/components/Sidebar";
+import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 
 export default function RootLayout({
@@ -10,9 +10,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="w-full h-screen flex">
-        <Menu />
+        <Sidebar />
         <div className="bg-light-gray w-full overflow-y-auto">
-          <TopMenu />
+          <Navbar />
           {children}
         </div>
       </body>
