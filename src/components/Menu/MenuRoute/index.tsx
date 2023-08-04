@@ -8,9 +8,11 @@ interface Props {
 
 export function MenuRoute({ icon: Icon, routeName, path }: Props) {
   return (
-    <li className="px-2 py-3 hover:cursor-pointer transition-all hover:rounded hover:bg-zinc-800 flex items-center text-white">
+    <li className="p-2 hover:cursor-pointer transition-all hover:rounded hover:bg-zinc-800 flex items-center text-white">
       <Icon />
-      <span className="ml-4 font-normal text-center">{routeName}</span>
+      <span className="ml-4 font-semibold text-sm text-center">
+        {routeName}
+      </span>
     </li>
   );
 }

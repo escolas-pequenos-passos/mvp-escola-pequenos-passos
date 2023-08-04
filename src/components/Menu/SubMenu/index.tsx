@@ -23,7 +23,7 @@ export function SubMenu({ menuName, menuIcon: Icon, children }: Props) {
         <div className="w-full flex items-center justify-between">
           <div className="flex items-center">
             <Icon />
-            <span className="ml-4 font-normal text-center">{menuName}</span>
+            <span className="ml-4 font-semibold text-sm">{menuName}</span>
           </div>
           <div
             className={` transition-all ${open ? "rotate-180" : "rotate-0"}`}

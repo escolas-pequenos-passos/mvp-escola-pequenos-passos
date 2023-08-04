@@ -11,7 +11,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="w-full h-screen flex">
         <Menu />
-        <div className="bg-light-gray w-full">
+        <div className="bg-light-gray w-full overflow-y-auto">
           <TopMenu />
           {children}
         </div>

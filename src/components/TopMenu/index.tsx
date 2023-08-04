@@ -57,7 +57,7 @@ export function TopMenu() {
             </PopoverContent>
           </Popover>
 
-          <span className="text-xs font-light text-zinc-900">
+          <span className="text-xs font-light text-zinc-900 hover:cursor-pointer hover:underline hover:text-blue-800">
             user@email.com
           </span>
           <Avatar>
