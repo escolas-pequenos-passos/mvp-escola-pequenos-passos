@@ -1,6 +1,6 @@
 export enum EventName {
-  external_activies = 'Atividades Externas',
-  planning = 'Planejamento',
-  avaliations = 'Avaliacoes',
-  projects = 'Projetos'
+  external_activies = 'external_activies',
+  planning = 'planning',
+  avaliations = 'avaliations',
+  projects = 'projects'
 }

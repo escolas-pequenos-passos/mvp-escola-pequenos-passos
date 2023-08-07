@@ -21,6 +21,8 @@ export function Calendar({ events }: Props) {
         center: "title",
         right: "dayGridMonth,dayGridWeek,dayGridDay",
       }}
+      dayMaxEventRows={5}
+      eventClick={(arg) => console.log("event id:", arg.event.id)}
     />
   );
 }

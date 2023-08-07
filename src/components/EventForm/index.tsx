@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "lucide-react";
-import * as z from "zod";
 
 import {
   Popover,
@@ -22,23 +21,31 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { EventTypeMapper } from "@/mappers/eventType";
 import { Calendar } from "@/components/ui/calendar";
+import { EventTypeMapper } from "@/mappers/eventType";
+
 import { formSchema } from "./schema/formSchema";
 import { formatDate } from "./helpers/formatData";
+import { FormDataDTO } from "./dtos/formDataDTO";
 
 interface Props {
   onSubmit: (data: any) => void;
 }
 
 export function EventForm({ onSubmit }: Props) {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormDataDTO>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      date: undefined,
+      type: undefined,
+    },
   });
 
-  function handleSendData(data: z.infer<typeof formSchema>) {
+  function handleSendData(data: FormDataDTO) {
     const payload = {
       ...data,
       date: formatDate(data.date),
@@ -59,6 +66,7 @@ export function EventForm({ onSubmit }: Props) {
               <FormControl>
                 <Input placeholder="insira um titulo" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -68,7 +76,7 @@ export function EventForm({ onSubmit }: Props) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Tipo</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={undefined}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Selecione o tipo do evento" />
@@ -94,6 +102,7 @@ export function EventForm({ onSubmit }: Props) {
                   )}
                 </SelectContent>
               </Select>
+              <FormMessage />
             </FormItem>
           )}
         />
