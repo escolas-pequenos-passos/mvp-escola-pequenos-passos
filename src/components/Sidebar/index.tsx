@@ -11,6 +11,10 @@ import { RxHome, RxCalendar, RxBarChart } from "react-icons/rx";
 import { Route } from "./Route";
 import { SubRoutes } from "./SubRoutes";
 
+function RouteWrapper({ children }: { children: React.ReactNode }) {
+  return <li>{children}</li>;
+}
+
 export function Sidebar() {
   return (
     <nav className="h-full w-72 bg-zinc-900">
@@ -29,7 +33,9 @@ export function Sidebar() {
 
         {/* router */}
         <ul className="mt-8 space-y-3 h-2/3 overflow-y-auto">
-          <Route icon={RxHome} routeName="Dashboard" path="/" />
+          <RouteWrapper>
+            <Route icon={RxHome} routeName="Dashboard" path="/" />
+          </RouteWrapper>
           <li className="px-2 py-3 text-white">
             <SubRoutes menuName="Calendarios" menuIcon={RxCalendar}>
               <Route
@@ -49,16 +55,20 @@ export function Sidebar() {
               />
             </SubRoutes>
           </li>
-          <Route
-            icon={RxBarChart}
-            routeName="Planos diarios"
-            path="/plans/diario"
-          />
-          <Route
-            icon={RxBarChart}
-            routeName="Planos anuais"
-            path="/plans/anual"
-          />
+          <li className="px-2 py-3 text-white">
+            <SubRoutes menuName="Planos" menuIcon={RxCalendar}>
+              <Route
+                icon={RxBarChart}
+                routeName="Diarios"
+                path="/plans/daily"
+              />
+              <Route
+                icon={RxBarChart}
+                routeName="Annuais"
+                path="/plans/yearly"
+              />
+            </SubRoutes>
+          </li>
         </ul>
         <div className="p-5 mt-auto flex gap-5 justify-center items-center border-t-[1px] border-t-zinc-500/75">
           <AiOutlinePoweroff className="text-white" size={24} />

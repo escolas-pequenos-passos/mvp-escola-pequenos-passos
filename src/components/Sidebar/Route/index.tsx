@@ -9,13 +9,14 @@ interface Props {
 
 export function Route({ icon: Icon, routeName, path }: Props) {
   return (
-    <li className="p-2 hover:cursor-pointer transition-all hover:rounded hover:bg-zinc-800 text-white">
-      <Link href={path} className="flex items-center">
-        <Icon />
-        <span className="ml-4 font-semibold text-sm text-center">
-          {routeName}
-        </span>
-      </Link>
-    </li>
+    <Link
+      href={path}
+      className="flex items-center hover:cursor-pointer transition-all hover:rounded hover:bg-zinc-800 text-white p-2"
+    >
+      <Icon />
+      <span className="ml-4 font-semibold text-sm text-center">
+        {routeName}
+      </span>
+    </Link>
   );
 }
