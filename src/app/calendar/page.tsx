@@ -32,7 +32,8 @@ export default function Global() {
       {
         id: v4(),
         title: data.title,
-        date: data.date,
+        start: data.start,
+        end: data.end,
         color: value ? value.color : undefined,
       },
     ]);

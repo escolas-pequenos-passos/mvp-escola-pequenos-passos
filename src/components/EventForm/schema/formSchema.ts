@@ -7,7 +7,12 @@ export const formSchema = z.object({
     message: "Insira um titulo",
   }),
   type: z.nativeEnum(EventName),
-  date: z.date({
-    required_error: "Selecione uma data",
+  start: z.date({
+    required_error: "Selecione a data inicial",
   }),
+  startTime: z.string().optional(),
+  end: z.date({
+    required_error: "Selecione a data inicial",
+  }).optional(),
+  endTime: z.string().optional()
 });

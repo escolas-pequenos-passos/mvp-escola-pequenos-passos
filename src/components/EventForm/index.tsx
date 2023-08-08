@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "lucide-react";
+import { toDate } from "date-fns";
 
 import {
   Popover,
@@ -40,15 +41,21 @@ export function EventForm({ onSubmit }: Props) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
-      date: undefined,
+      start: undefined,
+      end: undefined,
       type: undefined,
     },
   });
 
   function handleSendData(data: FormDataDTO) {
+    const start = formatDate(data.start);
+    const end = data.end ? formatDate(data.end) : undefined;
+
     const payload = {
-      ...data,
-      date: formatDate(data.date),
+      type: data.type,
+      title: data.title,
+      start: start,
+      end: end,
     };
     onSubmit(payload);
     form.reset();
@@ -106,39 +113,76 @@ export function EventForm({ onSubmit }: Props) {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="date"
-          render={({ field }) => {
-            return (
-              <FormItem className="flex flex-col">
-                <FormLabel>Data do Evento</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button>
-                        {field.value ? (
-                          <span>{formatDate(field.value)}</span>
-                        ) : (
-                          <span>Escolha uma data</span>
-                        )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </FormItem>
-            );
-          }}
-        />
+
+        <div className="flex items-center gap-5">
+          <FormField
+            control={form.control}
+            name="start"
+            render={({ field }) => {
+              return (
+                <FormItem className="flex flex-col flex-1">
+                  <FormLabel>Data Inicial</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button>
+                          {field.value ? (
+                            <span>{formatDate(field.value)}</span>
+                          ) : (
+                            <span>Escolha uma data</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </FormItem>
+              );
+            }}
+          />
+
+          <FormField
+            control={form.control}
+            name="end"
+            render={({ field }) => {
+              return (
+                <FormItem className="flex flex-col flex-1">
+                  <FormLabel>Data Final</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button>
+                          {field.value ? (
+                            <span>{formatDate(field.value)}</span>
+                          ) : (
+                            <span>Escolha uma data</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </FormItem>
+              );
+            }}
+          />
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </Form>
