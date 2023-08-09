@@ -19,6 +19,7 @@ export function Menu({ editor }: Props) {
   return (
     <div className="flex items-center">
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("heading", { level: 1 })}
@@ -26,6 +27,7 @@ export function Menu({ editor }: Props) {
         <LuHeading1 />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("heading", { level: 2 })}
@@ -33,6 +35,7 @@ export function Menu({ editor }: Props) {
         <LuHeading2 />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("heading", { level: 3 })}
@@ -40,6 +43,7 @@ export function Menu({ editor }: Props) {
         <LuHeading3 />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("underline")}
@@ -47,6 +51,7 @@ export function Menu({ editor }: Props) {
         <FaUnderline />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleBold().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("bold")}
@@ -54,6 +59,7 @@ export function Menu({ editor }: Props) {
         <FaBold />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleItalic().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("italic")}
@@ -61,6 +67,7 @@ export function Menu({ editor }: Props) {
         <FaItalic />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleStrike().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("strike")}
@@ -68,6 +75,7 @@ export function Menu({ editor }: Props) {
         <FaStrikethrough />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("bulletList")}
@@ -75,6 +83,7 @@ export function Menu({ editor }: Props) {
         <FaListUl />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("orderedList")}
@@ -82,6 +91,7 @@ export function Menu({ editor }: Props) {
         <FaListOl />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
         data-active={editor.isActive("blockquote")}
@@ -89,6 +99,7 @@ export function Menu({ editor }: Props) {
         <FaQuoteLeft />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().setHorizontalRule().run()}
         className="p-2 text-white bg-zinc-900 hover:bg-zinc-800 transition-colors data-[active=true]:text-light-green"
       >

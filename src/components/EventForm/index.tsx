@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "lucide-react";
-import { toDate } from "date-fns";
 
 import {
   Popover,
@@ -27,9 +26,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { EventTypeMapper } from "@/mappers/eventType";
+import { formatDate } from "@/helpers/formatData";
 
 import { formSchema } from "./schema/formSchema";
-import { formatDate } from "./helpers/formatData";
 import { FormDataDTO } from "./dtos/formDataDTO";
 
 interface Props {

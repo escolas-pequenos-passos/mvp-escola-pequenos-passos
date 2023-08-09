@@ -5,7 +5,7 @@ import { BsFillCalendarEventFill } from "react-icons/bs";
 import { v4 } from "uuid";
 
 import { Calendar } from "@/components/Calendar";
-import { CalendarEvent } from "@/dtos/calendarEvent";
+import { CalendarEvent } from "@/interfaces/calendarEvent";
 import {
   Dialog,
   DialogContent,

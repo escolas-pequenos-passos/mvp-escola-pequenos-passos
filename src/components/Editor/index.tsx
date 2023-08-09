@@ -4,20 +4,30 @@ import StarterKit from "@tiptap/starter-kit";
 
 import { Menu } from "./Menu";
 
-interface Props {}
+interface Props {
+  content: string;
+  onUpdateContent: (content: string) => void;
+  isEditable?: boolean;
+}
 
-const Editor = ({}: Props) => {
+export const Editor = ({
+  content,
+  onUpdateContent,
+  isEditable = true,
+}: Props) => {
   const editor = useEditor({
     extensions: [StarterKit, Underline],
-    content: `
-      <h1>This is a 1st level heading</h1>
-      <h2>This is a 2nd level heading</h2>
-      <h3>This is a 3rd level heading</h3>
-      <h4>This 4th level heading will be converted to a paragraph, because levels are configured to be only 1, 2 or 3.</h4
-    `,
+    content: content,
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML();
+      onUpdateContent(html);
+    },
     editorProps: {
       attributes: {
         class: "outline-none",
+      },
+      editable: () => {
+        return isEditable;
       },
     },
   });
@@ -29,10 +39,8 @@ const Editor = ({}: Props) => {
       <Menu editor={editor} />
       <EditorContent
         editor={editor}
-        className="max-w-full bg-white rounded p-2 prose-sm"
+        className="max-w-none overflow-y-auto h-[600px] bg-white rounded p-2 prose prose-sm prose-p:my-1 prose-zinc"
       />
     </div>
   );
 };
-
-export default Editor;

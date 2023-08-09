@@ -13,7 +13,7 @@ export default function Daily() {
   const pathname = usePathname();
 
   function handleEdit(data: any) {
-    console.log(data);
+    router.push(`${pathname}/edit`);
   }
 
   function handleGet(data: any) {

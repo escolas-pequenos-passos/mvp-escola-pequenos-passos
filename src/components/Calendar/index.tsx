@@ -2,7 +2,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import ptBrLocale from "@fullcalendar/core/locales/pt-br";
 
-import { CalendarEvent } from "@/dtos/calendarEvent";
+import { CalendarEvent } from "@/interfaces/calendarEvent";
 
 interface Props {
   events: CalendarEvent[];
