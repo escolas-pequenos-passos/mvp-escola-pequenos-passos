@@ -1,4 +1,3 @@
-// active | processing | deactive
 
 import { DailyStatus } from "@/interfaces/dailyPlan";
 

@@ -26,7 +26,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Editor } from "@/components/Editor";
 import { formatDate } from "@/helpers/formatData";
-import { editMock } from "./editMock";
+import { editMock } from "@/mocks/editMock";
 
 const schema = z.object({
   content: z.string({ required_error: "Insira um conteudo valido" }),

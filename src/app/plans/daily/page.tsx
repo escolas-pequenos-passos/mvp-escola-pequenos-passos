@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { FaRegStickyNote } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/DataTable";
-import { plansDaily } from "./plansDaily";
+import { plansDaily } from "@/mocks/plansDaily";
 import { dailyColumns } from "./columns";
 
 export default function Daily() {
