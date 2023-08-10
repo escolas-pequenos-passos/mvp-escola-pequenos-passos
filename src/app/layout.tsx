@@ -1,5 +1,3 @@
-"use client";
-
 import { Ubuntu, Bebas_Neue } from "next/font/google";
 import { AuthContextProvider } from "@/contexts/AuthContextProvider";
 import "./styles/globals.css";

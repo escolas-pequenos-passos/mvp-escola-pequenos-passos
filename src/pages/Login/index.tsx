@@ -104,7 +104,7 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
               >
-                {loading && <Loader2 className="w-3 h-3" />}
+                {loading && <Loader2 className="w-3 h-3 animate-spin" />}
                 Entrar
               </Button>
             </form>
