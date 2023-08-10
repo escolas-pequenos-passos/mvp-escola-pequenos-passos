@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
   Form,
@@ -15,8 +18,31 @@ import login from "../../../../assets/login.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+const schema = z.object({
+  email: z.string().email({ message: "Digite um email valido" }),
+  password: z.string().min(6, { message: "Digite pelo menos 6 digitos" }),
+});
+
+type FormData = z.infer<typeof schema>;
+
 export default function Login() {
-  const form = useForm();
+  const supabase = createClientComponentClient();
+  const form = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  async function handleLogin({ email, password }: FormData) {
+    try {
+      const { data } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="h-screen grid grid-cols-[1fr_40%]">
@@ -37,7 +63,7 @@ export default function Login() {
           </h1>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(console.log)}
+              onSubmit={form.handleSubmit(handleLogin)}
               className="space-y-5"
             >
               <FormField
@@ -60,7 +86,11 @@ export default function Login() {
                   <FormItem>
                     <FormLabel>Senha</FormLabel>
                     <FormControl>
-                      <Input placeholder="Insira seu e-mail" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="Insira sua senha"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
