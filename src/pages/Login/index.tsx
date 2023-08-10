@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Loader2 } from "lucide-react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -14,58 +15,59 @@ import {
   FormMessage,
   FormLabel,
 } from "@/components/ui/form";
-import login from "../../../../assets/login.png";
+import login from "../../../assets/login.png";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContextProvider";
 
 const schema = z.object({
-  email: z.string().email({ message: "Digite um email valido" }),
-  password: z.string().min(6, { message: "Digite pelo menos 6 digitos" }),
+  email: z
+    .string({ required_error: "E-mail obrigatorio" })
+    .email({ message: "Digite um email valido" }),
+  password: z
+    .string({ required_error: "Senha obrigatoria" })
+    .min(6, { message: "Digite pelo menos 6 digitos" }),
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function Login() {
-  const supabase = createClientComponentClient();
+  const [loading, setLoading] = useState(false);
+  const { signIn } = useAuth();
+
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  async function handleLogin({ email, password }: FormData) {
+  async function onLogin({ email, password }: FormData) {
+    setLoading(true);
     try {
-      const { data } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      console.log(data);
+      await signIn({ email, password });
     } catch (error) {
-      console.error(error);
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <div className="h-screen grid grid-cols-[1fr_40%]">
-      <div className="relative h-full w-full">
+    <div className="grid grid-cols-[1fr_40%] bg-light-gray">
+      <div className="relative">
         <div className="absolute inset-0 bg-black/40" />
         <Image
-          // layout="fill"
-          objectFit="cover"
+          className="h-screen w-full object-fill"
           src={login}
           alt="foto de login"
         />
       </div>
 
-      <div className="bg-light-gray p-16 flex justify-center items-center">
-        <div className="w-full">
-          <h1 className="text-center text-3xl font-bold text-gray-900">
+      <div className="p-24 flex justify-center items-center">
+        <div className="w-full space-y-3">
+          <h1 className="font-ubuntu text-center text-3xl font-bold text-gray-900">
             Login
           </h1>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleLogin)}
-              className="space-y-5"
-            >
+            <form onSubmit={form.handleSubmit(onLogin)} className="space-y-5">
               <FormField
                 control={form.control}
                 name="email"
@@ -97,11 +99,22 @@ export default function Login() {
                 )}
               />
 
-              <Button className="w-full" type="submit">
+              <Button
+                className="w-full flex items-center gap-3"
+                type="submit"
+                disabled={loading}
+              >
+                {loading && <Loader2 className="w-3 h-3" />}
                 Entrar
               </Button>
             </form>
           </Form>
+
+          <div className="text-center">
+            <span className="text-center text-sm text-gray-600">
+              Esqueceu a senha ?
+            </span>
+          </div>
         </div>
       </div>
     </div>

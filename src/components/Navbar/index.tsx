@@ -9,6 +9,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useAuth } from "@/contexts/AuthContextProvider";
 
 const statusMapper = {
   success: "bg-green-700",
@@ -33,10 +34,12 @@ function Notification({
 }
 
 export function Navbar() {
+  const { session } = useAuth();
+
   return (
     <div className="w-full px-5 py-4 border-b-[1px] border-b-dark-blue/20">
       <div className="flex justify-between items-center">
-        <span className="text-sm font-semibold text-zinc-900">
+        <span className="font-bebas tracking-widest antialiased text-sm font-semibold text-zinc-900">
           Escola Pequenos Passos
         </span>
         <div className="flex items-center gap-5">
@@ -58,7 +61,7 @@ export function Navbar() {
           </Popover>
 
           <span className="text-xs font-light text-zinc-900 hover:cursor-pointer hover:underline hover:text-blue-800">
-            user@email.com
+            {session?.user.email}
           </span>
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />

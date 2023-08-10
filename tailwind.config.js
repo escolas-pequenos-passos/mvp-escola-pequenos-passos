@@ -16,6 +16,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        ubuntu: ['var(--font-ubuntu)'],
+        bebas: ['var(--font-bebas)']
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

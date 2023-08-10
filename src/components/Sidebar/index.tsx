@@ -1,21 +1,23 @@
 "use client";
 
 import Image from "next/image";
+import { RxHome, RxCalendar, RxBarChart } from "react-icons/rx";
 import { AiOutlinePoweroff } from "react-icons/ai";
-import { RiUserSmileLine } from "react-icons/ri";
 import { AiOutlineGlobal } from "react-icons/ai";
 
-import logo from "../../../assets/logo.png";
-
-import { RxHome, RxCalendar, RxBarChart } from "react-icons/rx";
 import { Route } from "./Route";
 import { SubRoutes } from "./SubRoutes";
+import { useAuth } from "@/contexts/AuthContextProvider";
+
+import logo from "../../../assets/logo.png";
 
 function RouteWrapper({ children }: { children: React.ReactNode }) {
   return <li>{children}</li>;
 }
 
 export function Sidebar() {
+  const { signOut } = useAuth();
+
   return (
     <nav className="h-full w-72 bg-zinc-900">
       <div className="p-5 h-full flex flex-col">
@@ -71,8 +73,12 @@ export function Sidebar() {
           </li>
         </ul>
         <div className="p-5 mt-auto flex gap-5 justify-center items-center border-t-[1px] border-t-zinc-500/75">
-          <AiOutlinePoweroff className="text-white" size={24} />
-          <RiUserSmileLine className="text-white" size={24} />
+          <button
+            className="outline-none border-none bg-transparent"
+            onClick={signOut}
+          >
+            <AiOutlinePoweroff className="text-white" size={24} />
+          </button>
         </div>
       </div>
     </nav>
