@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CalendarIcon, Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter as useNavigation } from "next/navigation";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -40,7 +40,7 @@ type FormData = z.infer<typeof schema>;
 export default function New({ params }: { params: { type: "new" | "edit" } }) {
   const [load, setLoad] = useState(false);
 
-  const router = useRouter();
+  const navigation = useNavigation();
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues:
@@ -67,7 +67,7 @@ export default function New({ params }: { params: { type: "new" | "edit" } }) {
 
     setTimeout(() => {
       console.log({ payload });
-      router.back();
+      navigation.back();
     }, 5000);
   }
 
